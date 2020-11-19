@@ -14,6 +14,9 @@
 (package! paradox)
 (package! org-super-agenda)
 
+;; vimrc mode
+(package! vimrc :recipe (:host github :repo "mcandre/vimrc-mode"))
+
 ;; Use delta for displaying diffs.
 (package! magit-delta :recipe (:host github :repo "dandavison/magit-delta"))
 
