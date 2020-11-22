@@ -29,6 +29,9 @@
 ;; matrix in its own frame
 (package! matrix-client.el :recipe (:host github :repo "alphapapa/matrix-client.el"))
 
+;; a redis client in emacs lisp
+(package! eredis :recipe (:host github :repo "justinhj/eredis"))
+
 ;;spotify client
 ;;(package! spotify.el :recipe (:host github :repo "danielfm/spotify.el"))
 
