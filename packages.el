@@ -32,6 +32,9 @@
 ;; a redis client in emacs lisp
 (package! eredis :recipe (:host github :repo "justinhj/eredis"))
 
+;; emojis
+(package! emojify :recipe (:host github :repo "iqbalansari/emacs-emojify"))
+
 ;;spotify client
 ;;(package! spotify.el :recipe (:host github :repo "danielfm/spotify.el"))
 
