@@ -179,6 +179,5 @@
 ;;                                      (concat xdg-data-home "spotify/emacs-secret"))))
 ;;  (setq spotify-transport 'connect)
 ;;  (spotify-remote-mode t))
-
-(map! "C-c ." #'spotify-mode)
+;;  (map! "C-c ." #'spotify-mode)
 ;;; config.el ends here
