@@ -38,6 +38,9 @@
 ;; lightweight (un|re)do
 (package! undo-fu :recipe (:host gitlab :repo "ideasman42/emacs-undo-fu"))
 
+;; use poetry instead of pipenv
+(package! pipenv :disable t )
+
 ;;spotify client
 ;;(package! spotify.el :recipe (:host github :repo "danielfm/spotify.el"))
 
