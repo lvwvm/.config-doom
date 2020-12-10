@@ -153,7 +153,7 @@
   (setq mu4e-maildir xdg-mail-home)
   (setq mu4e-attachment-dir "~/Downloads/Attachments"))
 
-(use-package! vimrc
+(use-package! vimrc-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode)))
 ;;;; uml in emacs
