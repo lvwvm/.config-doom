@@ -143,6 +143,25 @@
   (evil-collection-setup-minibuffer nil)
   (evil-undo-system 'undo-fu))
 
+;;;; format files with lsp if possible
+(use-package! lsp-mode
+  :defer t
+  :config
+  (setq lsp-log-io nil)
+  (setq lsp-ui-peek-mode t)
+  (setq +format-with-lsp t))
+
+(use-package! lsp-ui
+  :defer t
+  :config
+  ;; sideline diagnostics buggin.
+  (setq lsp-ui-sideline-show-diagnostics nil)
+  ;; doom disables lsp-ui-doc by default
+  (setq lsp-ui-doc-enable nil)
+  ;; Don't show symbol definitions in the sideline. They are pretty noisy,
+  ;; and there is a bug preventing Flycheck errors from being shown (the
+  ;; errors flash briefly and then disappear).
+  (setq lsp-ui-sideline-update-mode nil))
 
 ;;;; mu email indexer
 (use-package! mu4e
