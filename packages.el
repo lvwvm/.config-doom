@@ -35,6 +35,7 @@
 ;; emojis
 (package! emojify :recipe (:host github :repo "iqbalansari/emacs-emojify"))
 
+(package! undor-fu :recipe (:host gitlab :repo "ideasman42/emacs-undo-fu"))
 ;;spotify client
 ;;(package! spotify.el :recipe (:host github :repo "danielfm/spotify.el"))
 

@@ -140,7 +140,9 @@
 ;;;; evil mode everywhere
 (use-package! evil-collection
   :custom
-  (evil-collection-setup-minibuffer nil))
+  (evil-collection-setup-minibuffer nil)
+  (evil-undo-system 'undo-fu))
+
 
 ;;;; mu email indexer
 (use-package! mu4e
