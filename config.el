@@ -37,6 +37,19 @@
       (insert-file-contents file)
       (buffer-string))))
 
+;;  Python
+;; (when (featurep! :lang python)
+;;   (remove-hook! 'python-mode-hook #'(pipenv-mode))
+;;   (map! :desc "poetry"
+;;         :prefix "C-p"))
+
+;; (map! (:when (featurep! :lang python +poetry))
+;;       :leader
+;;       :map python-mode-map
+;;       :desc "poetry run"
+;;       :prefix "C-p"
+;;       :g "r" #'poetry-run)
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -110,85 +123,108 @@
                                      ("@social" . ?s)
                                      ("@work" . ?w ))))
 
-;;;; taking notes with org.
+;;;; taking pdf annotations with org.
 (use-package! org-noter
-  :custom
-  (org-noter-notes-search-path
-   (list (expand-file-name(concat org-directory "Notes")))))
+  :defer-incrementally
+  org evil-org org-brain
+  :init
+  (setq org-noter-notes-search-path
+   (list (expand-file-name (concat org-directory "Notes")))))
 
 ;;;; brainstorming with org
 (use-package! org-brain
-  :init
-  (setq org-brain-path (concat org-directory "Brain"))
+  :defer-incrementally
+  org evil-org org-noter org-journal
+  :after-call
+  org-noter-doc-mode-hook
+  org-noter-notes-mode-hook
   :config
-  (evil-set-initial-state 'org-brain-visualize-mode 'emacs)
-  :after org-noter
-  (add-to-list 'org-noter-notes-search-path org-brain-path t))
+  (setq org-brain-path
+   (expand-file-name (concat org-directory "Brain")))
+  (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
+
+(after! :and org-brain org-noter
+ (add-to-list 'org-noter-notes-search-path org-brain-path 'append))
 
 ;;;; org mode journal
 (use-package! org-journal
-  :custom
-  (org-journal-dir (expand-file-name (concat org-directory "Journal")))
-  :after org
-  (add-to-list 'org-agenda-files org-journal-dir t))
+  :defer-incrementally
+  org evil-org org-noter org-brain org-agenda org-super-agenda
+  :after-call
+  org-agenda-mode-hook
+  :config
+  (setq org-journal-dir (expand-file-name (concat org-directory "Journal"))))
+
+(after! org-journal
+  (add-to-list 'org-agenda-files org-journal-dir 'append))
 
 ;;;; org agenda
 (use-package! org-super-agenda
-  :custom
+  :defer-incrementally
+  org org-agenda evil-org
+  :after-call
+  org-agenda-mode-hook
+  :config
   (org-super-agenda-mode t))
 
 ;;;; evil mode everywhere
 (use-package! evil-collection
+  :after evil
   :custom
-  (evil-collection-setup-minibuffer nil)
-  (evil-undo-system 'undo-fu))
+  (evil-collection-setup-minibuffer t)
+  :init
+  (evil-collection-init))
 
-;;;; format files with lsp if possible
+;;;; language server protcol
 (use-package! lsp-mode
-  :defer t
-  :config
-  (setq lsp-log-io nil)
-  (setq lsp-ui-peek-mode t)
-  (setq +format-with-lsp t))
+  :custom
+  ;; doom disables lsp-ui-doc by default
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-peek-mode t)
+  (lsp-log-io nil)
+  (+format-with-lsp t))
 
 (use-package! lsp-ui
-  :defer t
-  :config
+  :custom
   ;; sideline diagnostics buggin.
-  (setq lsp-ui-sideline-show-diagnostics nil)
-  ;; doom disables lsp-ui-doc by default
-  (setq lsp-ui-doc-enable nil)
+  (lsp-ui-sideline-show-diagnostics nil)
   ;; Don't show symbol definitions in the sideline. They are pretty noisy,
   ;; and there is a bug preventing Flycheck errors from being shown (the
   ;; errors flash briefly and then disappear).
-  (setq lsp-ui-sideline-update-mode nil))
+  (lsp-ui-sideline-update-mode nil))
 
 ;;;; mu email indexer
 (use-package! mu4e
-  :config
-  (setq mail-user-agent 'mu4e-user-agent)
-  (setq +mu4e-backend 'mbsync)
-  (setq +mu4e-workspace-name "email")
+  :init
+  (setq +mu4e-workspace-name "mail")
   (setq mu4e-maildir xdg-mail-home)
-  (setq mu4e-attachment-dir "~/Downloads/Attachments"))
+  :custom
+  (mail-user-agent 'mu4e-user-agent)
+  (mu4e-attachment-dir "~/Downloads/Attachments")
+  (+mu4e-backend 'mbsync))
 
 (use-package! vimrc-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode)))
 ;;;; uml in emacs
 (use-package! plantuml-mode
-  :config
-  (setq plantuml-executable-path "/usr/bin/plantuml")
-  (setq plantuml-default-exec-mode 'executable))
+  :custom
+  (plantuml-executable-path "/usr/bin/plantuml")
+  (plantuml-default-exec-mode 'executable))
 
 ;;;; elcord
 (use-package! elcord)
 
 ;;;; leetcode
 (use-package! leetcode
+  :custom
+  (leetcode-prefer-language "python3")
+  (leetcode-prefer-sql "mysql"))
+
+;; Python
+(use-package! poetry
   :config
-  (setq leetcode-prefer-language "python3")
-  (setq leetcode-prefer-sql "mysql"))
+  (setq poetry-tracking-strategy 'projectile))
 
 ;;  (use-package! spotify
 ;;  :config
