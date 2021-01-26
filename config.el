@@ -114,7 +114,7 @@
 (use-package! org-noter
   :custom
   (org-noter-notes-search-path
-   (list (expand-file-name(concat org-directory "Notes")))))
+   (list (expand-file-name (concat org-directory "Notes")))))
 
 ;;;; brainstorming with org
 (use-package! org-brain
@@ -172,9 +172,11 @@
   (setq mu4e-maildir xdg-mail-home)
   (setq mu4e-attachment-dir "~/Downloads/Attachments"))
 
+;;; vimrc syntax
 (use-package! vimrc-mode
   :init
   (add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode)))
+
 ;;;; uml in emacs
 (use-package! plantuml-mode
   :config
