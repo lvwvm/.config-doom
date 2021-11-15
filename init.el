@@ -112,7 +112,7 @@
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
        (cc
-        +lsp)                ; C/C++/Obj-C madness
+        +eglot)                ; C/C++/Obj-C madness
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -126,13 +126,13 @@
        ;;ess               ; emacs speaks statistics
        faust             ; dsp, but you get to keep your soul
        ;;fsharp           ; ML stands for Microsoft's Language
-       (go +lsp)            ; the hipster dialect
+       (go +eglot)            ; the hipster dialect
        ;;(haskell +dante)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        (java +meghanada) ; the poster child for carpal tunnel syndrome
        (javascript
-        +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+        +eglot)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        kotlin            ; a better, slicker Java(Script)
        latex             ; writing papers in Emacs has never been so fun
@@ -159,7 +159,7 @@
        plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python
-        +lsp
+        +eglot
         +pyenv
         +poetry)            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
@@ -168,16 +168,16 @@
        ;;rst               ; ReST in peace
        ;;ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        (rust
-        +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+        +eglot)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        scheme            ; a fully conniving family of lisps
        (sh
-        +lsp)               ; she sells {ba,z,fi}sh shells on the C xor
+        +eglot)               ; she sells {ba,z,fi}sh shells on the C xor
        solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        (web
-        +lsp
+        +eglot
         +html
         +css)                             ; the tubes
        (yaml
