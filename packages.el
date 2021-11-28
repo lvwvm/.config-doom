@@ -15,6 +15,7 @@
 (package! org-super-agenda)
 (package! org-gcal)
 (package! calfw)
+(package! sudo-edit)
 
 ;; vimrc mode
 (package! vimrc :recipe (:host github :repo "mcandre/vimrc-mode"))
