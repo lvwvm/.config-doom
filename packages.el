@@ -13,6 +13,8 @@
 
 (package! paradox)
 (package! org-super-agenda)
+(package! org-gcal)
+(package! calfw)
 
 ;; vimrc mode
 (package! vimrc :recipe (:host github :repo "mcandre/vimrc-mode"))
