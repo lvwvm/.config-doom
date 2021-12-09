@@ -37,6 +37,11 @@
       (insert-file-contents file)
       (buffer-string))))
 
+(defun ibuffer-mark-dired-and-deer-buffers ()
+  "Mark all `dired' and `deer' buffers."
+  (interactive)
+  (ibuffer-mark-on-buffer
+   #'(lambda (buf) (eq (buffer-local-value 'major-mode buf) (or 'dired-mode 'ranger-override-dired-mode)))))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
